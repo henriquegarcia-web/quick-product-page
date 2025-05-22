@@ -1,11 +1,13 @@
-export type SupportedMask = 'currency'
+export type SupportedMask = 'currency' | 'cep'
 
 type MaskInput = {
   currency: number | string
+  cep: string
 }
 
 type MaskReturn = {
   currency: string
+  cep: string
 }
 
 type MaskHandlers = {
@@ -27,6 +29,14 @@ const maskHandlers: MaskHandlers = {
       style: 'currency',
       currency: 'BRL',
     }).format(numericValue)
+  },
+
+  cep: (value) => {
+    if (!value) return ''
+    return value
+      .replace(/\D/g, '')
+      .replace(/(\d{5})(\d)/, '$1-$2')
+      .replace(/(-\d{3})\d+?$/, '$1')
   },
 }
 
