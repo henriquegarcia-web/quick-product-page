@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${openSans.variable} font-sans antialiased bg-white text-zinc-900`}>
+      <body className={`${openSans.variable} font-sans antialiased`}>
         <MainLayout>{children}</MainLayout>
       </body>
     </html>
