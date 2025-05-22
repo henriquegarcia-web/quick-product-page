@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { openSans } from '@/lib/fonts'
 
 import '@/styles/globals.css'
-import MainLayout from '@/components/shared/MainLayout'
+import { MainLayout } from '@/components/shared'
 
 export const metadata: Metadata = {
   title: 'QuickShop',

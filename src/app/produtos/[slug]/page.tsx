@@ -1,34 +1,42 @@
-import { Breadcrumb } from '@/components/shared'
 import {
   ImageGallery,
   ProductInfo,
   ProductPrice,
   VariantSelector,
   DeliveryChecker,
+  Breadcrumb,
 } from '@/components/product'
 
-const breadcrumbItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Camisetas', href: '/categorias/camisetas' },
-  { label: 'Camiseta Azul GG', href: '/produtos/camiseta-azul-gg', isCurrent: true },
-]
+import { ecommerce } from '@/data/ecommerce'
+
+const product = ecommerce.products[0]
+const category = ecommerce.categories.find((c) => c.id === product.categoryId)
 
 export default function ProductDetailPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <Breadcrumb items={breadcrumbItems} />
+      <Breadcrumb
+        category={{
+          name: category?.name || '',
+          slug: category?.slug || '',
+        }}
+        product={{
+          name: product.name,
+          slug: product.slug,
+        }}
+      />
 
       <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-start">
         {/* Imagem do Produto */}
         <div className="w-full md:w-[35%]">
-          <ImageGallery />
+          <ImageGallery images={product.images} />
         </div>
 
         {/* Informações do Produto */}
         <div className="w-full md:w-[65%] flex flex-col gap-6">
-          <ProductInfo />
-          <ProductPrice />
-          <VariantSelector />
+          <ProductInfo title={product.name} description={product.description} />
+          <ProductPrice price={product.price} />
+          <VariantSelector sizes={product.sizes} colors={product.colors} />
           <DeliveryChecker />
         </div>
       </div>

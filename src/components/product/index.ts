@@ -1,3 +1,4 @@
+export { default as Breadcrumb } from './Breadcrumb'
 export { default as ImageGallery } from './ImageGallery'
 export { default as ProductInfo } from './ProductInfo'
 export { default as ProductPrice } from './ProductPrice'

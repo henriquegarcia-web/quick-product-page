@@ -22,6 +22,7 @@ const eslintConfig = [
     rules: {
       'react/jsx-key': 'error',
       'no-console': ['warn', { allow: ['warn', 'error'] }],
+      '@typescript-eslint/no-explicit-any': ['warn'],
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@next/next/no-html-link-for-pages': 'off',
