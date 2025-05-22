@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import logo from '@/assets/logo.png'
+import { ecommerce } from '@/data/ecommerce'
 
 export default function Logo() {
   return (
     <Image
-      src={logo}
+      src={ecommerce.store.logo}
       alt="Logo da QuickShop"
       width={120}
       height={40}

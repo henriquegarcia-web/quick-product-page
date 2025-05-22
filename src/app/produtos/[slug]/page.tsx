@@ -5,7 +5,7 @@ import {
   ProductPrice,
   VariantSelector,
   DeliveryChecker,
-} from '@/components'
+} from '@/components/product'
 
 const breadcrumbItems = [
   { label: 'Home', href: '/' },
