@@ -35,18 +35,18 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <>
       <Breadcrumb
         category={{ name: category?.name || '', slug: category?.slug || '' }}
         product={{ name: product.name, slug: product.slug }}
       />
 
       <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-start">
-        <div className="w-full md:w-[35%]">
+        <div className="w-full md:w-[35vw] max-w-[680px]">
           <ImageGallery images={currentVariant.images} />
         </div>
 
-        <div className="w-full md:w-[65%] flex flex-col gap-6">
+        <div className="w-full flex flex-1 flex-col gap-6">
           <ProductInfo title={product.name} description={product.description} />
           <ProductPrice
             price={currentVariant?.sizes.find((s) => s.size === selectedSize)?.price}
@@ -74,6 +74,6 @@ export default function ProductDetailPage() {
           <DeliveryChecker />
         </div>
       </div>
-    </div>
+    </>
   )
 }

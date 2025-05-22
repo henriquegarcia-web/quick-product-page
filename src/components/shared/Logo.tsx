@@ -6,10 +6,10 @@ export default function Logo() {
     <Image
       src={ecommerce.store.logo}
       alt="Logo da QuickShop"
-      width={120}
-      height={40}
+      width={146}
+      height={44}
       priority
-      className="h-auto w-auto max-h-10"
+      className="h-auto w-auto max-h-14"
     />
   )
 }

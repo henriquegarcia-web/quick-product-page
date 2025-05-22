@@ -16,7 +16,7 @@ export default function ImageGallery({ images }: Props) {
 
   return (
     <div className="space-y-4">
-      <div className="aspect-square w-full border">
+      <div className="aspect-square w-full border border-zinc-300 rounded-lg overflow-hidden">
         <Image
           src={selected}
           alt="Imagem do produto"
@@ -25,14 +25,14 @@ export default function ImageGallery({ images }: Props) {
           className="object-cover w-full h-full"
         />
       </div>
-      <div className="flex gap-2 overflow-x-auto">
+      <div className="flex gap-2">
         {images.map((img) => (
           <button
             key={img}
             onClick={() => setSelected(img)}
-            className={`border rounded ${img === selected ? 'ring-2 ring-black' : ''}`}
+            className={`border border-zinc-300 rounded-lg overflow-hidden hover:border-zinc-500 ${img === selected ? 'ring-2 ring-black' : ''}`}
           >
-            <Image src={img} alt="" width={60} height={60} className="object-cover" />
+            <Image src={img} alt="" width={80} height={80} className="object-cover" />
           </button>
         ))}
       </div>

@@ -7,7 +7,7 @@
   --wrapper-width: 1200px;
 
   --header-height: 80px;
-  --footer-height: 40px;
+  --footer-height: 100px;
 }
 
 @theme inline {
@@ -28,6 +28,12 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+a {
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .test {

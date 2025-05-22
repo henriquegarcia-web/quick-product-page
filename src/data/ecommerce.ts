@@ -10,7 +10,7 @@ import type { IEcommerceData } from '@/types/ecommerce'
 export const ecommerce: IEcommerceData = {
   store: {
     name: 'QuickShop',
-    logo: '/logo.png',
+    logo: '/logo_full.png',
     description: 'Crie sua loja, divulgue, lucre e seja feliz!',
     pricing: {
       installment: {
