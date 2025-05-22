@@ -7,6 +7,7 @@ import {
   VariantSelector,
   DeliveryChecker,
   Breadcrumb,
+  BuyButton,
 } from '@/components/product'
 import { useProductSelection } from '@/hooks/useProductSelection'
 import { useParams } from 'next/navigation'
@@ -55,6 +56,17 @@ export default function ProductDetailPage() {
             selectedSize={selectedSize}
             onSelectColor={setSelectedColor}
             onSelectSize={setSelectedSize}
+          />
+          <BuyButton
+            selectedColor={selectedColor}
+            selectedSize={selectedSize}
+            onBuy={() => {
+              console.log('Produto adicionado:', {
+                slug: product.slug,
+                color: selectedColor,
+                size: selectedSize,
+              })
+            }}
           />
           <DeliveryChecker />
         </div>

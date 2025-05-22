@@ -1,5 +1,5 @@
 import { useSearchParams, useRouter } from 'next/navigation'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { ecommerce } from '@/data/ecommerce'
 import type { IProduct, IProductVariant } from '@/types/ecommerce'
 
