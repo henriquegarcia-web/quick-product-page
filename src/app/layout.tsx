@@ -1,17 +1,8 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { openSans } from '@/lib/fonts'
 
 import '@/styles/globals.css'
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+import MainLayout from '@/components/shared/MainLayout'
 
 export const metadata: Metadata = {
   title: 'QuickShop',
@@ -25,7 +16,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${openSans.variable} font-sans antialiased bg-white text-zinc-900`}>
+        <MainLayout>{children}</MainLayout>
+      </body>
     </html>
   )
 }
