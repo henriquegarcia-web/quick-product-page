@@ -18,20 +18,21 @@ export default function VariantSelector({
   onSelectSize,
 }: Props) {
   return (
-    <div className="space-y-6">
-      {/* Cores */}
+    <div className="space-y-4">
+      {/* Cor */}
       <div>
-        <h3 className="text-sm font-medium text-zinc-700 mb-1">Cor</h3>
-        <div className="flex gap-2 flex-wrap">
+        <h3 className="text-sm font-semibold text-zinc-800 mb-2">Cor</h3>
+        <div className="flex flex-wrap gap-2">
           {colors.map((color) => (
             <button
               key={color}
               onClick={() => onSelectColor(color)}
-              className={`px-4 py-1 border rounded text-sm capitalize transition ${
-                selectedColor === color
-                  ? 'bg-zinc-800 text-white border-zinc-800'
-                  : 'bg-white text-zinc-800 border-zinc-300'
-              }`}
+              className={`px-4 py-2 rounded-md border text-sm capitalize transition
+                ${
+                  selectedColor === color
+                    ? 'bg-zinc-900 text-white border-zinc-900'
+                    : 'bg-white text-zinc-800 border-zinc-300 hover:border-zinc-500'
+                }`}
             >
               {color}
             </button>
@@ -39,19 +40,20 @@ export default function VariantSelector({
         </div>
       </div>
 
-      {/* Tamanhos */}
+      {/* Tamanho */}
       <div>
-        <h3 className="text-sm font-medium text-zinc-700 mb-1">Tamanho</h3>
-        <div className="flex gap-2 flex-wrap">
+        <h3 className="text-sm font-semibold text-zinc-800 mb-2">Tamanho</h3>
+        <div className="flex flex-wrap gap-2">
           {sizes.map((size) => (
             <button
               key={size}
               onClick={() => onSelectSize(size)}
-              className={`px-4 py-1 border rounded text-sm uppercase transition ${
-                selectedSize === size
-                  ? 'bg-zinc-800 text-white border-zinc-800'
-                  : 'bg-white text-zinc-800 border-zinc-300'
-              }`}
+              className={`px-4 py-2 rounded-md border text-sm uppercase transition
+                ${
+                  selectedSize === size
+                    ? 'bg-zinc-900 text-white border-zinc-900'
+                    : 'bg-white text-zinc-800 border-zinc-300 hover:border-zinc-500'
+                }`}
             >
               {size}
             </button>

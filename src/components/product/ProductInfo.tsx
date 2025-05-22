@@ -1,3 +1,5 @@
+import { ExpandableText } from '@/components/product'
+
 interface Props {
   title: string
   description: string
@@ -5,9 +7,9 @@ interface Props {
 
 export default function ProductInfo({ title, description }: Props) {
   return (
-    <div>
-      <h1 className="text-2xl font-bold">{title}</h1>
-      <p className="mt-2 text-sm text-zinc-600">{description}</p>
+    <div className="space-y-3">
+      <h1 className="text-3xl font-bold text-zinc-900">{title}</h1>
+      <ExpandableText>{description}</ExpandableText>
     </div>
   )
 }

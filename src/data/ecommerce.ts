@@ -33,9 +33,10 @@ export const ecommerce: IEcommerceData = {
     {
       id: 'camiseta-esportiva',
       categoryId: 'camisetas',
-      name: 'Camiseta Esportiva Malha Fina',
+      name: 'Camiseta de Treino com Tecido Dry Fit + Proteção UV',
       slug: 'camiseta-esportiva',
-      description: 'Camiseta em algodão 100%, confortável e estilosa.',
+      description:
+        'Perfeita para seus treinos, esta camiseta combina conforto e desempenho com tecido Dry Fit que mantém o corpo seco e arejado. Além disso, conta com proteção UV, ideal para atividades ao ar livre, oferecendo estilo, leveza e segurança em qualquer momento do seu dia.',
       variants: [
         {
           color: 'Preto',

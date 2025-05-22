@@ -21,7 +21,7 @@ const eslintConfig = [
     },
     rules: {
       'react/jsx-key': 'error',
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-console': ['warn', { allow: ['log', 'warn', 'error'] }],
       '@typescript-eslint/no-explicit-any': ['warn'],
       'no-unused-vars': ['off', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-unused-vars': ['off', { argsIgnorePattern: '^_' }],

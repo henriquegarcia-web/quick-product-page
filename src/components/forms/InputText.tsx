@@ -18,18 +18,17 @@ export default function InputText({
   type = 'text',
 }: InputTextProps) {
   return (
-    <div className="w-full max-w-xs">
-      {label && <label className="block text-sm font-medium mb-1">{label}</label>}
+    <div className="w-full space-y-1">
+      {label && <label className="block text-sm font-medium text-zinc-700">{label}</label>}
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className={`w-full px-3 py-2 border rounded outline-none transition ${
-          error ? 'border-red-500' : 'border-zinc-300 focus:border-zinc-500'
-        }`}
+        className={`w-full h-[var(--input-height)] px-3 text-sm rounded-md border outline-none transition
+          ${error ? 'border-red-500' : 'border-zinc-300 focus:border-zinc-500'}`}
       />
-      {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+      {error && <p className="text-xs text-red-500">{error}</p>}
     </div>
   )
 }

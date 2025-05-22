@@ -42,7 +42,7 @@ export default function ProductDetailPage() {
       />
 
       <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-start">
-        <div className="w-full md:w-[35vw] max-w-[680px]">
+        <div className="w-full md:w-[35vw] max-w-[540px]">
           <ImageGallery images={currentVariant.images} />
         </div>
 
@@ -60,17 +60,20 @@ export default function ProductDetailPage() {
             onSelectColor={setSelectedColor}
             onSelectSize={setSelectedSize}
           />
-          <BuyButton
-            selectedColor={selectedColor}
-            selectedSize={selectedSize}
-            onBuy={() => {
-              console.log('Produto adicionado:', {
-                slug: product.slug,
-                color: selectedColor,
-                size: selectedSize,
-              })
-            }}
-          />
+          <div className="flex flex-col gap-2 mt-3 mb-1">
+            <BuyButton
+              product={product}
+              selectedColor={selectedColor}
+              selectedSize={selectedSize}
+              mode="cart"
+            />
+            <BuyButton
+              product={product}
+              selectedColor={selectedColor}
+              selectedSize={selectedSize}
+              mode="buy"
+            />
+          </div>
           <DeliveryChecker />
         </div>
       </div>

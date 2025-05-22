@@ -3,11 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --link: #0070f3;
 
-  --wrapper-width: 1200px;
+  --wrapper-width: 1000px;
 
   --header-height: 80px;
   --footer-height: 100px;
+  --input-height: 44px;
 }
 
 @theme inline {
