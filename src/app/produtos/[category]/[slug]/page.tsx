@@ -48,7 +48,10 @@ export default function ProductDetailPage() {
 
         <div className="w-full md:w-[65%] flex flex-col gap-6">
           <ProductInfo title={product.name} description={product.description} />
-          <ProductPrice price={product.price} />
+          <ProductPrice
+            price={currentVariant?.sizes.find((s) => s.size === selectedSize)?.price}
+            stock={currentVariant?.sizes.find((s) => s.size === selectedSize)?.stock || 0}
+          />
           <VariantSelector
             colors={product.variants.map((v) => v.color)}
             sizes={availableSizes}

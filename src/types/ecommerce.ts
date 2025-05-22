@@ -2,6 +2,13 @@ export interface IStoreInfo {
   name: string
   logo: string
   description: string
+  pricing: {
+    installment: {
+      quantity: number
+      interestFree?: boolean
+    }
+    pixDiscount: number
+  }
 }
 
 export interface ICategory {
@@ -10,13 +17,21 @@ export interface ICategory {
   slug: string
 }
 
+export interface IProductPrice {
+  current: number
+  original?: number
+}
+
+export interface IProductSize {
+  size: string
+  stock: number
+  price: IProductPrice
+}
+
 export interface IProductVariant {
   color: string
   images: string[]
-  sizes: {
-    size: string
-    stock: number
-  }[]
+  sizes: IProductSize[]
 }
 
 export interface IProduct {
@@ -25,7 +40,6 @@ export interface IProduct {
   name: string
   slug: string
   description: string
-  price: number
   variants: IProductVariant[]
 }
 
