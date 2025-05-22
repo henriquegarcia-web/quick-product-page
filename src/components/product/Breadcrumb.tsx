@@ -21,7 +21,7 @@ export default function Breadcrumb({ category, product }: Props) {
 
       <LuChevronRight className="mx-2 h-4 w-4" aria-hidden />
 
-      <Link href={`/categorias/${category.slug}`} className="hover:underline">
+      <Link href={`/produtos/${category.slug}`} className="hover:underline">
         {category.name}
       </Link>
 

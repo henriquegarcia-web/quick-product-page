@@ -10,8 +10,14 @@ export interface ICategory {
   slug: string
 }
 
-export type Size = 'P' | 'M' | 'G' | 'GG'
-export type Color = 'Azul' | 'Branco'
+export interface IProductVariant {
+  color: string
+  images: string[]
+  sizes: {
+    size: string
+    stock: number
+  }[]
+}
 
 export interface IProduct {
   id: string
@@ -19,11 +25,8 @@ export interface IProduct {
   name: string
   slug: string
   description: string
-  images: string[]
   price: number
-  sizes: Size[]
-  colors: Color[]
-  stock: Record<`${Size}-${Color}`, number>
+  variants: IProductVariant[]
 }
 
 export interface IEcommerceData {

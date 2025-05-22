@@ -1,3 +1,3 @@
-export default function ProductsPage() {
+export default function CategoriesListPage() {
   return <></>
 }

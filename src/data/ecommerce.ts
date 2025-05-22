@@ -1,4 +1,4 @@
-import { IEcommerceData } from '@/types/ecommerce'
+import type { IEcommerceData } from '@/types/ecommerce'
 
 export const ecommerce: IEcommerceData = {
   store: {
@@ -17,29 +17,44 @@ export const ecommerce: IEcommerceData = {
 
   products: [
     {
-      id: 'camiseta-azul-gg',
+      id: 'camiseta-esportiva',
       categoryId: 'camisetas',
-      name: 'Camiseta Azul GG',
-      slug: 'camiseta-azul-gg',
+      name: 'Camiseta Esportiva Malha Fina',
+      slug: 'camiseta-esportiva',
       description: 'Camiseta em algodão 100%, confortável e estilosa.',
-      images: [
-        '/products/camiseta-azul-1.png',
-        '/products/camiseta-azul-2.png',
-        '/products/camiseta-azul-3.png',
-      ],
       price: 79.9,
-      sizes: ['P', 'M', 'G', 'GG'],
-      colors: ['Azul', 'Branco'],
-      stock: {
-        'P-Azul': 3,
-        'M-Azul': 5,
-        'G-Azul': 0,
-        'GG-Azul': 2,
-        'P-Branco': 1,
-        'M-Branco': 2,
-        'G-Branco': 0,
-        'GG-Branco': 0,
-      },
+      variants: [
+        {
+          color: 'Preto',
+          images: [
+            '/products/camiseta-esportiva-preta-1.png',
+            '/products/camiseta-esportiva-preta-2.png',
+          ],
+          sizes: [
+            { size: 'P', stock: 3 },
+            { size: 'M', stock: 5 },
+            { size: 'G', stock: 0 },
+            { size: 'GG', stock: 2 },
+          ],
+        },
+        {
+          color: 'Branco',
+          images: [
+            '/products/camiseta-esportiva-branca-1.png',
+            '/products/camiseta-esportiva-branca-2.png',
+            '/products/camiseta-esportiva-branca-3.png',
+            '/products/camiseta-esportiva-branca-4.png',
+            '/products/camiseta-esportiva-branca-5.png',
+            '/products/camiseta-esportiva-branca-6.png',
+          ],
+          sizes: [
+            { size: 'P', stock: 1 },
+            { size: 'M', stock: 2 },
+            { size: 'G', stock: 0 },
+            { size: 'GG', stock: 0 },
+          ],
+        },
+      ],
     },
   ],
 }

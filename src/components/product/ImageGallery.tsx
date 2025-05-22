@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface Props {
   images: string[]
@@ -9,6 +9,10 @@ interface Props {
 
 export default function ImageGallery({ images }: Props) {
   const [selected, setSelected] = useState(images[0])
+
+  useEffect(() => {
+    setSelected(images[0])
+  }, [images])
 
   return (
     <div className="space-y-4">

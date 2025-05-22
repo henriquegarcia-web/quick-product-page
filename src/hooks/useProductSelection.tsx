@@ -1,0 +1,80 @@
+import { useSearchParams, useRouter } from 'next/navigation'
+import { useEffect, useMemo } from 'react'
+import { ecommerce } from '@/data/ecommerce'
+import type { IProduct, IProductVariant } from '@/types/ecommerce'
+
+export function useProductSelection(slug: string) {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  const product: IProduct | undefined = useMemo(
+    () => ecommerce.products.find((p) => p.slug === slug),
+    [slug],
+  )
+
+  const category = useMemo(
+    () => ecommerce.categories.find((c) => c.id === product?.categoryId),
+    [product?.categoryId],
+  )
+
+  const paramColor = searchParams.get('cor')
+  const paramSize = searchParams.get('tamanho')
+
+  const defaultVariant = useMemo(() => {
+    if (!product) return undefined
+
+    for (const variant of product.variants) {
+      const availableSize = variant.sizes.find((s) => s.stock > 0)
+      if (availableSize) {
+        return {
+          color: variant.color,
+          size: availableSize.size,
+        }
+      }
+    }
+    return undefined
+  }, [product])
+
+  const selectedColor = paramColor || defaultVariant?.color || ''
+  const selectedSize = paramSize || defaultVariant?.size || ''
+
+  const currentVariant: IProductVariant | undefined = useMemo(
+    () => product?.variants.find((v) => v.color.toLowerCase() === selectedColor.toLowerCase()),
+    [product, selectedColor],
+  )
+
+  const availableSizes = useMemo(() => {
+    return currentVariant?.sizes.filter((s) => s.stock > 0).map((s) => s.size) || []
+  }, [currentVariant])
+
+  const setSelectedColor = (color: string) => {
+    const variant = product?.variants.find((v) => v.color.toLowerCase() === color.toLowerCase())
+
+    if (!variant) return
+
+    const firstAvailable = variant.sizes.find((s) => s.stock > 0)
+    if (!firstAvailable) return
+
+    const search = new URLSearchParams(searchParams.toString())
+    search.set('cor', color)
+    search.set('tamanho', firstAvailable.size)
+    router.replace(`?${search.toString()}`)
+  }
+
+  const setSelectedSize = (size: string) => {
+    const search = new URLSearchParams(searchParams.toString())
+    search.set('tamanho', size)
+    router.replace(`?${search.toString()}`)
+  }
+
+  return {
+    product,
+    category,
+    currentVariant,
+    selectedColor,
+    selectedSize,
+    availableSizes,
+    setSelectedColor,
+    setSelectedSize,
+  }
+}
