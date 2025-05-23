@@ -19,8 +19,11 @@ export default function ProductDetailPage() {
     product,
     category,
     currentVariant,
+    colors,
+    sizes,
     selectedColor,
     selectedSize,
+    selectedSizeData,
     availableSizes,
     setSelectedColor,
     setSelectedSize,
@@ -48,17 +51,15 @@ export default function ProductDetailPage() {
 
         <div className="w-full flex flex-1 flex-col gap-6">
           <ProductInfo title={product.name} description={product.description} />
-          <ProductPrice
-            price={currentVariant?.sizes.find((s) => s.size === selectedSize)?.price}
-            stock={currentVariant?.sizes.find((s) => s.size === selectedSize)?.stock || 0}
-          />
+          <ProductPrice price={selectedSizeData?.price} stock={selectedSizeData?.stock || 0} />
           <VariantSelector
-            colors={product.variants.map((v) => v.color)}
-            sizes={availableSizes}
+            colors={colors}
+            sizes={sizes}
             selectedColor={selectedColor}
             selectedSize={selectedSize}
             onSelectColor={setSelectedColor}
             onSelectSize={setSelectedSize}
+            availableSizes={availableSizes}
           />
           <div className="flex flex-col gap-2 mt-3 mb-1">
             <BuyButton

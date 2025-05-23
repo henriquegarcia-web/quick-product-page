@@ -1,5 +1,7 @@
 'use client'
 
+import { VariantButton } from '@/components/product'
+
 interface Props {
   colors: string[]
   sizes: string[]
@@ -7,6 +9,7 @@ interface Props {
   selectedSize: string
   onSelectColor: (color: string) => void
   onSelectSize: (size: string) => void
+  availableSizes: string[]
 }
 
 export default function VariantSelector({
@@ -16,6 +19,7 @@ export default function VariantSelector({
   selectedSize,
   onSelectColor,
   onSelectSize,
+  availableSizes,
 }: Props) {
   return (
     <div className="space-y-4">
@@ -24,18 +28,12 @@ export default function VariantSelector({
         <h3 className="text-sm font-semibold text-zinc-800 mb-2">Cor</h3>
         <div className="flex flex-wrap gap-2">
           {colors.map((color) => (
-            <button
+            <VariantButton
               key={color}
+              label={color}
+              selected={selectedColor === color}
               onClick={() => onSelectColor(color)}
-              className={`px-4 py-2 rounded-md border text-sm capitalize transition
-                ${
-                  selectedColor === color
-                    ? 'bg-zinc-900 text-white border-zinc-900'
-                    : 'bg-white text-zinc-800 border-zinc-300 hover:border-zinc-500'
-                }`}
-            >
-              {color}
-            </button>
+            />
           ))}
         </div>
       </div>
@@ -45,18 +43,13 @@ export default function VariantSelector({
         <h3 className="text-sm font-semibold text-zinc-800 mb-2">Tamanho</h3>
         <div className="flex flex-wrap gap-2">
           {sizes.map((size) => (
-            <button
+            <VariantButton
               key={size}
+              label={size}
+              selected={selectedSize === size}
               onClick={() => onSelectSize(size)}
-              className={`px-4 py-2 rounded-md border text-sm uppercase transition
-                ${
-                  selectedSize === size
-                    ? 'bg-zinc-900 text-white border-zinc-900'
-                    : 'bg-white text-zinc-800 border-zinc-300 hover:border-zinc-500'
-                }`}
-            >
-              {size}
-            </button>
+              disabled={!availableSizes.includes(size)}
+            />
           ))}
         </div>
       </div>

@@ -3,24 +3,22 @@ import { useMemo } from 'react'
 
 import { ecommerce } from '@/data/ecommerce'
 
-import type { IProduct, IProductVariant } from '@/types/ecommerce'
+import type { IProduct, IProductVariant, IProductSize } from '@/types/ecommerce'
 
 export function useProductSelection(slug: string) {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const product: IProduct | undefined = useMemo(
-    () => ecommerce.products.find((p) => p.slug === slug),
-    [slug],
-  )
+  const product = useMemo<IProduct | undefined>(() => {
+    return ecommerce.products.find((p) => p.slug === slug)
+  }, [slug])
 
-  const category = useMemo(
-    () => ecommerce.categories.find((c) => c.id === product?.categoryId),
-    [product?.categoryId],
-  )
+  const category = useMemo(() => {
+    return ecommerce.categories.find((c) => c.id === product?.categoryId)
+  }, [product])
 
-  const paramColor = searchParams.get('cor')
-  const paramSize = searchParams.get('tamanho')
+  const paramColor = searchParams.get('cor') || ''
+  const paramSize = searchParams.get('tamanho') || ''
 
   const defaultVariant = useMemo(() => {
     if (!product) return undefined
@@ -40,18 +38,28 @@ export function useProductSelection(slug: string) {
   const selectedColor = paramColor || defaultVariant?.color || ''
   const selectedSize = paramSize || defaultVariant?.size || ''
 
-  const currentVariant: IProductVariant | undefined = useMemo(
-    () => product?.variants.find((v) => v.color.toLowerCase() === selectedColor.toLowerCase()),
-    [product, selectedColor],
-  )
+  const currentVariant = useMemo<IProductVariant | undefined>(() => {
+    return product?.variants.find((v) => v.color.toLowerCase() === selectedColor.toLowerCase())
+  }, [product, selectedColor])
 
-  const availableSizes = useMemo(() => {
+  const availableSizes = useMemo<string[]>(() => {
     return currentVariant?.sizes.filter((s) => s.stock > 0).map((s) => s.size) || []
   }, [currentVariant])
 
+  const selectedSizeData = useMemo<IProductSize | undefined>(() => {
+    return currentVariant?.sizes.find((s) => s.size === selectedSize)
+  }, [currentVariant, selectedSize])
+
+  const colors = useMemo(() => {
+    return product?.variants.map((v) => v.color) || []
+  }, [product])
+
+  const sizes = useMemo(() => {
+    return [...new Set(product?.variants.flatMap((v) => v.sizes.map((s) => s.size)) || [])]
+  }, [product])
+
   const setSelectedColor = (color: string) => {
     const variant = product?.variants.find((v) => v.color.toLowerCase() === color.toLowerCase())
-
     if (!variant) return
 
     const firstAvailable = variant.sizes.find((s) => s.stock > 0)
@@ -75,7 +83,10 @@ export function useProductSelection(slug: string) {
     currentVariant,
     selectedColor,
     selectedSize,
+    selectedSizeData,
     availableSizes,
+    colors,
+    sizes,
     setSelectedColor,
     setSelectedSize,
   }
