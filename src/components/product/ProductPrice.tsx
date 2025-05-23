@@ -1,8 +1,9 @@
 'use client'
 
 import { ecommerce } from '@/data/ecommerce'
-import type { IProductPrice } from '@/types/ecommerce'
 import { applyMask } from '@/utils/masks'
+
+import type { IProductPrice } from '@/types/ecommerce'
 
 interface Props {
   price?: IProductPrice

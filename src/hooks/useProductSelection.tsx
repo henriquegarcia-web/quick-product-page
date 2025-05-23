@@ -1,6 +1,8 @@
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useMemo } from 'react'
+
 import { ecommerce } from '@/data/ecommerce'
+
 import type { IProduct, IProductVariant } from '@/types/ecommerce'
 
 export function useProductSelection(slug: string) {

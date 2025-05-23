@@ -6,7 +6,7 @@ export default function Home() {
       <h1 className="mb-4 text-4xl font-bold text-zinc-800">
         Bem-vindo à <b className="text-[var(--brand-primary)]">QuickShop</b>
       </h1>
-      <p className="text-zinc-600 text-base mb-6">
+      <p className="mb-6 text-zinc-600 text-base">
         Explore nossas categorias e encontre produtos incríveis com qualidade, conforto e estilo.
       </p>
       <Button to="/categorias" type="link">

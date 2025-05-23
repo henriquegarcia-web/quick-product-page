@@ -38,9 +38,9 @@ export default function ImageGallery({ images }: Props) {
         <Image
           src={selected}
           alt="Imagem do produto"
-          width={500}
-          height={500}
-          className="object-cover w-full h-full"
+          width={600}
+          height={600}
+          className="object-cover object-center w-full h-full"
         />
 
         {showZoom && (
@@ -66,13 +66,7 @@ export default function ImageGallery({ images }: Props) {
               img === selected ? 'ring-2 ring-black' : ''
             }`}
           >
-            <Image
-              src={img}
-              alt=""
-              width={80}
-              height={80}
-              className="object-cover"
-            />
+            <Image src={img} alt="" width={80} height={80} className="object-cover object-center" />
           </button>
         ))}
       </div>

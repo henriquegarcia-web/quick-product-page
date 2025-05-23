@@ -11,6 +11,7 @@
 
 import { useState } from 'react'
 import { ImSpinner9 } from 'react-icons/im'
+
 import type { IProduct } from '@/types/ecommerce'
 
 interface BuyButtonProps {
