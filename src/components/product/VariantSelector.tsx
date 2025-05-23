@@ -4,7 +4,7 @@
 
 import { useParams } from 'next/navigation'
 
-import { useProductSelection } from '@/hooks/useProductSelection'
+import { useProductDetail } from '@/hooks/useProductDetail'
 import { VariantButton } from '@/components/product'
 
 // ─── Componente VariantSelector ─────────────────────────────────────────────
@@ -20,11 +20,9 @@ export default function VariantSelector() {
     setSelectedSize,
     availableSizes,
     loading,
-  } = useProductSelection(params.slug)
+  } = useProductDetail(params.slug)
 
-  if (loading) {
-    return <div className="h-28 bg-zinc-100 animate-pulse rounded-lg" />
-  }
+  if (loading) return <VariantSelectorSkeleton />
 
   return (
     <div className="space-y-4">
@@ -60,4 +58,10 @@ export default function VariantSelector() {
       </div>
     </div>
   )
+}
+
+// ─── VariantSelector Loading Skeleton ───────────────────────────────────────
+
+function VariantSelectorSkeleton() {
+  return <div className="h-28 bg-zinc-100 animate-pulse rounded-lg" />
 }

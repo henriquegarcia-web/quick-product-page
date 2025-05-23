@@ -15,7 +15,7 @@ import { useState } from 'react'
 import { useParams } from 'next/navigation'
 import { ImSpinner9 } from 'react-icons/im'
 
-import { useProductSelection } from '@/hooks/useProductSelection'
+import { useProductDetail } from '@/hooks/useProductDetail'
 import { cn } from '@/utils/cn'
 
 // ─── Tipagens ───────────────────────────────────────────────────────────────
@@ -28,12 +28,10 @@ interface BuyButtonProps {
 
 export default function BuyButton({ mode }: BuyButtonProps) {
   const params = useParams<{ slug: string }>()
-  const { selectedColor, selectedSize, product, loading } = useProductSelection(params.slug)
+  const { selectedColor, selectedSize, product, loading } = useProductDetail(params.slug)
   const [internalLoading, setInternalLoading] = useState(false)
 
-  if (loading) {
-    return <div className="h-[var(--input-height)] bg-zinc-100 animate-pulse rounded-lg" />
-  }
+  if (loading) return <BuyButtonSkeleton />
 
   const isDisabled = !selectedColor || !selectedSize || internalLoading
 
@@ -78,4 +76,10 @@ export default function BuyButton({ mode }: BuyButtonProps) {
             : 'Adicionar ao carrinho'}
     </button>
   )
+}
+
+// ─── BuyButton Loading Skeleton ─────────────────────────────────────────────
+
+function BuyButtonSkeleton() {
+  return <div className="h-[var(--input-height)] bg-zinc-100 animate-pulse rounded-lg" />
 }

@@ -4,18 +4,16 @@
 
 import { useParams } from 'next/navigation'
 
-import { useProductSelection } from '@/hooks/useProductSelection'
+import { useProductDetail } from '@/hooks/useProductDetail'
 import { ExpandableText } from '@/components/product'
 
 // ─── Componente ProductInfo ─────────────────────────────────────────────────
 
 export default function ProductInfo() {
   const params = useParams<{ slug: string }>()
-  const { product, loading } = useProductSelection(params.slug)
+  const { product, loading } = useProductDetail(params.slug)
 
-  if (loading) {
-    return <div className="h-24 bg-zinc-100 animate-pulse rounded-lg" />
-  }
+  if (loading) return <ProductInfoSkeleton />
 
   if (!product) return null
 
@@ -25,4 +23,10 @@ export default function ProductInfo() {
       <ExpandableText>{product.description}</ExpandableText>
     </div>
   )
+}
+
+// ─── ProductInfo Loading Skeleton ───────────────────────────────────────────
+
+function ProductInfoSkeleton() {
+  return <div className="h-24 bg-zinc-100 animate-pulse rounded-lg" />
 }

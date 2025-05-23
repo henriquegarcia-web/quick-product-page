@@ -1,6 +1,7 @@
 // ─── Imports ────────────────────────────────────────────────────────────────
 
 import { IProduct } from '@/types/product'
+import { ICategory } from '@/types/category'
 
 // ─── Store ──────────────────────────────────────────────────────────────────
 
@@ -15,14 +16,6 @@ export interface IStoreInfo {
     }
     pixDiscount: number
   }
-}
-
-// ─── Categorias ─────────────────────────────────────────────────────────────
-
-export interface ICategory {
-  id: string
-  name: string
-  slug: string
 }
 
 // ─── Estrutura de Dados da Loja ─────────────────────────────────────────────

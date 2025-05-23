@@ -9,9 +9,9 @@ import { ecommerce } from '@/data/ecommerce'
 
 import type { IProduct, IProductVariant, IProductSize } from '@/types/product'
 
-// ─── Hook Principal ─────────────────────────────────────────────────────────
+// ─── Hook useProductDetail ──────────────────────────────────────────────────
 
-export function useProductSelection(slug: string) {
+export function useProductDetail(slug: string) {
   const router = useRouter()
   const searchParams = useSearchParams()
 

@@ -4,7 +4,7 @@
 
 import { useParams } from 'next/navigation'
 
-import { useProductSelection } from '@/hooks/useProductSelection'
+import { useProductDetail } from '@/hooks/useProductDetail'
 import { ecommerce } from '@/data/ecommerce'
 import { applyMask } from '@/utils/masks'
 
@@ -12,12 +12,10 @@ import { applyMask } from '@/utils/masks'
 
 export default function ProductPrice() {
   const params = useParams<{ slug: string }>()
-  const { selectedSizeData, loading } = useProductSelection(params.slug)
+  const { selectedSizeData, loading } = useProductDetail(params.slug)
   const { installment, pixDiscount } = ecommerce.store.pricing
 
-  if (loading) {
-    return <div className="h-32 bg-zinc-100 animate-pulse rounded-lg" />
-  }
+  if (loading) return <ProductPriceSkeleton />
 
   // Caso não exista o produto
   if (!selectedSizeData) {
@@ -72,4 +70,10 @@ export default function ProductPrice() {
       )}
     </div>
   )
+}
+
+// ─── ProductPrice Loading Skeleton ──────────────────────────────────────────
+
+function ProductPriceSkeleton() {
+  return <div className="h-32 bg-zinc-100 animate-pulse rounded-lg" />
 }

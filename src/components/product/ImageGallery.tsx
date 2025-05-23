@@ -3,17 +3,17 @@
 // ─── Imports ────────────────────────────────────────────────────────────────
 
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
-import { useProductSelection } from '@/hooks/useProductSelection'
+import { useProductDetail } from '@/hooks/useProductDetail'
 import { cn } from '@/utils/cn'
 
 // ─── Componente ImageGallery ────────────────────────────────────────────────
 
 export default function ImageGallery() {
   const params = useParams<{ slug: string }>()
-  const { currentVariant } = useProductSelection(params.slug)
+  const { currentVariant, loading } = useProductDetail(params.slug)
 
   const [selected, setSelected] = useState<string | null>(null)
   const [showZoom, setShowZoom] = useState(false)
@@ -28,8 +28,13 @@ export default function ImageGallery() {
     }
   }, [currentVariant])
 
+  // Skeleton de loading
+  if (loading) return <ImageGallerySkeleton />
+
+  // Produto inválido
   if (!currentVariant || !currentVariant.images.length || !selected) return null
 
+  // Lógica de zoom do mouse
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { left, top, width, height } = e.currentTarget.getBoundingClientRect()
     const x = ((e.clientX - left) / width) * 100
@@ -88,6 +93,21 @@ export default function ImageGallery() {
               className="object-cover object-center"
             />
           </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ─── ImageGallery Loading Skeleton ──────────────────────────────────────────
+
+function ImageGallerySkeleton() {
+  return (
+    <div className="space-y-4">
+      <div className="aspect-square w-full bg-zinc-100 animate-pulse rounded-lg" />
+      <div className="flex gap-2">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="w-20 h-20 bg-zinc-100 animate-pulse rounded-lg" />
         ))}
       </div>
     </div>

@@ -6,17 +6,15 @@ import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { LuChevronRight } from 'react-icons/lu'
 
-import { useProductSelection } from '@/hooks/useProductSelection'
+import { useProductDetail } from '@/hooks/useProductDetail'
 
 // ─── Componente Breadcrumb ─────────────────────────────────────────────────
 
 export default function Breadcrumb() {
   const params = useParams<{ slug: string }>()
-  const { product, category, loading } = useProductSelection(params.slug)
+  const { product, category, loading } = useProductDetail(params.slug)
 
-  if (loading) {
-    return <div className="h-6 w-60 bg-zinc-100 animate-pulse rounded-md" />
-  }
+  if (loading) return <BreadcrumbSkeleton />
 
   if (!product || !category) return null
 
@@ -47,4 +45,10 @@ export default function Breadcrumb() {
       </span>
     </nav>
   )
+}
+
+// ─── Breadcrumb Loading Skeleton ────────────────────────────────────────────
+
+function BreadcrumbSkeleton() {
+  return <div className="h-6 w-60 bg-zinc-100 animate-pulse rounded-md" />
 }
