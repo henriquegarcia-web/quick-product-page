@@ -2,7 +2,7 @@
 
 export interface IProductPrice {
   current: number
-  original?: number
+  original: number
 }
 
 // ─── Tamanho do Produto ─────────────────────────────────────────────────────

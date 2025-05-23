@@ -2,31 +2,24 @@
 
 // ─── Imports ────────────────────────────────────────────────────────────────
 
+import { useParams } from 'next/navigation'
+import { useProductSelection } from '@/hooks/useProductSelection'
 import { VariantButton } from '@/components/product'
-
-// ─── Tipagens ───────────────────────────────────────────────────────────────
-
-interface VariantSelectorProps {
-  colors: string[]
-  sizes: string[]
-  selectedColor: string
-  selectedSize: string
-  onSelectColor: (color: string) => void
-  onSelectSize: (size: string) => void
-  availableSizes: string[]
-}
 
 // ─── Componente VariantSelector ─────────────────────────────────────────────
 
-export default function VariantSelector({
-  colors,
-  sizes,
-  selectedColor,
-  selectedSize,
-  onSelectColor,
-  onSelectSize,
-  availableSizes,
-}: VariantSelectorProps) {
+export default function VariantSelector() {
+  const params = useParams<{ slug: string }>()
+  const {
+    colors,
+    sizes,
+    selectedColor,
+    selectedSize,
+    setSelectedColor,
+    setSelectedSize,
+    availableSizes,
+  } = useProductSelection(params.slug)
+
   return (
     <div className="space-y-4">
       {/* Seleção de cor */}
@@ -38,7 +31,7 @@ export default function VariantSelector({
               key={color}
               label={color}
               selected={selectedColor === color}
-              onClick={() => onSelectColor(color)}
+              onClick={() => setSelectedColor(color)}
             />
           ))}
         </div>
@@ -53,7 +46,7 @@ export default function VariantSelector({
               key={size}
               label={size}
               selected={selectedSize === size}
-              onClick={() => onSelectSize(size)}
+              onClick={() => setSelectedSize(size)}
               disabled={!availableSizes.includes(size)}
             />
           ))}

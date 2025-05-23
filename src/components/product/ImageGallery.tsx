@@ -4,30 +4,32 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import { useParams } from 'next/navigation'
 
+import { useProductSelection } from '@/hooks/useProductSelection'
 import { cn } from '@/utils/cn'
-
-// ─── Tipagens ───────────────────────────────────────────────────────────────
-
-interface ImageGalleryProps {
-  images: string[]
-}
 
 // ─── Componente ImageGallery ────────────────────────────────────────────────
 
-export default function ImageGallery({ images }: ImageGalleryProps) {
-  const [selected, setSelected] = useState(images[0])
+export default function ImageGallery() {
+  const params = useParams<{ slug: string }>()
+  const { currentVariant } = useProductSelection(params.slug)
+
+  const [selected, setSelected] = useState<string | null>(null)
   const [showZoom, setShowZoom] = useState(false)
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 })
 
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Atualiza a imagem selecionada ao alterar a lista
+  // Atualiza imagem padrão quando a variante for carregada
   useEffect(() => {
-    if (images.length > 0) setSelected(images[0])
-  }, [images])
+    if (currentVariant?.images?.[0]) {
+      setSelected(currentVariant.images[0])
+    }
+  }, [currentVariant])
 
-  // Função que calcula a posição do zoom com base na posição do mouse
+  if (!currentVariant || !currentVariant.images.length || !selected) return null
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { left, top, width, height } = e.currentTarget.getBoundingClientRect()
     const x = ((e.clientX - left) / width) * 100
@@ -53,7 +55,6 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
           height={600}
           className="object-cover object-center w-full h-full"
         />
-
         {showZoom && (
           <div
             className="absolute inset-0 pointer-events-none"
@@ -69,7 +70,7 @@ export default function ImageGallery({ images }: ImageGalleryProps) {
 
       {/* Miniaturas */}
       <div className="flex gap-2" aria-label="Miniaturas do produto">
-        {images.map((img) => (
+        {currentVariant.images.map((img) => (
           <button
             key={img}
             onClick={() => setSelected(img)}

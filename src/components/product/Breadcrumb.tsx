@@ -1,24 +1,23 @@
+'use client'
+
 // ─── Componente Breadcrumb ─────────────────────────────────────────────────
 
+import { useProductSelection } from '@/hooks/useProductSelection'
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 import { LuChevronRight } from 'react-icons/lu'
-
-// ─── Tipagens ───────────────────────────────────────────────────────────────
-
-interface IBreadcrumbProps {
-  category: {
-    name: string
-    slug: string
-  }
-  product: {
-    name: string
-    slug: string
-  }
-}
 
 // ─── Componente Breadcrumb ──────────────────────────────────────────────────
 
-export default function Breadcrumb({ category, product }: IBreadcrumbProps) {
+export default function Breadcrumb() {
+  const params = useParams<{ slug: string }>()
+  const { product, category } = useProductSelection(params.slug)
+
+  if (!product) return null
+
+  const curCategory = { name: category?.name || '', slug: category?.slug || '' }
+  const curProduct = { name: product.name, slug: product.slug }
+
   return (
     <nav
       className="flex items-center w-fit text-sm text-zinc-600"
@@ -33,8 +32,8 @@ export default function Breadcrumb({ category, product }: IBreadcrumbProps) {
       <LuChevronRight className="mx-2 h-4 w-4" aria-hidden />
 
       {/* Link: Categoria */}
-      <Link href={`/categorias/${category.slug}`} className="hover:underline">
-        {category.name}
+      <Link href={`/categorias/${curCategory.slug}`} className="hover:underline">
+        {curCategory.name}
       </Link>
 
       {/* Separador */}
@@ -42,7 +41,7 @@ export default function Breadcrumb({ category, product }: IBreadcrumbProps) {
 
       {/* Página atual */}
       <span className="text-zinc-900 font-medium line-clamp-1" aria-current="page">
-        {product.name}
+        {curProduct.name}
       </span>
     </nav>
   )

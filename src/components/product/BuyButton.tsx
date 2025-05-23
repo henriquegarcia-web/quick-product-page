@@ -12,55 +12,40 @@
 // ─── Imports ────────────────────────────────────────────────────────────────
 
 import { useState } from 'react'
+import { useParams } from 'next/navigation'
+import { useProductSelection } from '@/hooks/useProductSelection'
 import { ImSpinner9 } from 'react-icons/im'
-
 import { cn } from '@/utils/cn'
-
-import type { IProduct } from '@/types/product'
 
 // ─── Tipagens ───────────────────────────────────────────────────────────────
 
-interface IBuyButtonProps {
-  selectedColor: string
-  selectedSize: string
-  disabled?: boolean
-  loading?: boolean
-  product: IProduct
+interface BuyButtonProps {
   mode: 'buy' | 'cart'
 }
 
 // ─── Componente BuyButton ───────────────────────────────────────────────────
 
-export default function BuyButton({
-  selectedColor,
-  selectedSize,
-  disabled,
-  loading: externalLoading = false,
-  product,
-  mode,
-}: IBuyButtonProps) {
+export default function BuyButton({ mode }: BuyButtonProps) {
+  const params = useParams<{ slug: string }>()
+  const { selectedColor, selectedSize, product } = useProductSelection(params.slug)
+
   const [internalLoading, setInternalLoading] = useState(false)
 
-  // Função que define se o botão deve estar desabilitado
-  const isDisabled =
-    !selectedColor || !selectedSize || disabled || externalLoading || internalLoading
+  const isDisabled = !selectedColor || !selectedSize || internalLoading
 
-  // Função que simula ação de compra ou adição ao carrinho
   const onClick = () => {
     const action = mode === 'buy' ? 'Compra imediata' : 'Adicionado ao carrinho'
-
     setInternalLoading(true)
     setTimeout(() => {
       setInternalLoading(false)
       console.log(`${action}:`, {
-        slug: product.slug,
+        slug: product?.slug,
         color: selectedColor,
         size: selectedSize,
       })
     }, 2000)
   }
 
-  // Classe base para o botão, dependendo do modo
   const baseClass =
     mode === 'cart'
       ? 'text-green-700 bg-green-200 opacity-85 hover:opacity-100'
@@ -76,15 +61,11 @@ export default function BuyButton({
         isDisabled ? 'bg-zinc-300 text-zinc-500 cursor-not-allowed' : baseClass,
       )}
     >
-      {/* Ícone de carregamento */}
-      {(externalLoading || internalLoading) && (
-        <ImSpinner9 className="w-4 h-4 animate-spin text-inherit" />
-      )}
+      {internalLoading && <ImSpinner9 className="w-4 h-4 animate-spin text-inherit" />}
 
-      {/* Texto do botão */}
-      {isDisabled && !externalLoading && !internalLoading
+      {isDisabled && !internalLoading
         ? 'Selecione cor e tamanho'
-        : externalLoading || internalLoading
+        : internalLoading
           ? mode === 'buy'
             ? 'Finalizando...'
             : 'Adicionando...'
