@@ -47,6 +47,16 @@ A estrutura atual permite a inclusão fácil de novas variantes de produto sem r
 
 ---
 
+### 📝 Observações
+
+- **Comentários detalhados por escolha**: ao longo do código, adicionei mais comentários do que o comum ou o estritamente necessário. Fiz isso propositalmente para reforçar meu raciocínio técnico, esclarecer decisões de implementação e facilitar a leitura por avaliadores. Em um ambiente de produção real, o uso de comentários seria mais enxuto e focado em pontos realmente complexos ou não evidentes.
+
+- **Decisões pensadas com contexto real de e-commerce**: algumas escolhas, como o uso de query params para variantes, não só atendem ao desafio técnico como também antecipam necessidades comuns em e-commerces, como compartilhamento de produtos, rastreamento de campanhas, ou controle de estado sem dependência de `localStorage`.
+
+- **Design centrado no uso real**: além de atender à especificação (imagem principal com miniaturas, seletores de cor e tamanho, CEP via ViaCEP), me baseei na experiência de usuários reais ao pensar na organização visual, usabilidade mobile-first e feedback imediato nas interações.
+
+---
+
 ## 🖥️ Execução Local
 
 ```bash
@@ -62,6 +72,8 @@ npm install | yarn install
 # Inicie o servidor local
 npm run dev | yarn dev
 ```
+
+---
 
 ## 🌐 Deploy
 
