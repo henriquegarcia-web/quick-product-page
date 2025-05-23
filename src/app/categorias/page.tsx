@@ -7,7 +7,7 @@ export default function CategoriesListPage() {
   const categories = ecommerce.categories
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-y-6 min-h-[var(--home-height)] py-8">
       <ReturnLink path="/" text="Voltar para o início" />
 
       <h1 className="text-2xl font-bold text-zinc-800">Categorias</h1>

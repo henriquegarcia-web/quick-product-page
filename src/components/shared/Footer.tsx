@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="flex w-full h-[var(--footer-height)] justify-center items-center px-6 bg-zinc-100">
+    <footer className="flex w-full h-[var(--footer-height)] justify-center items-center px-6 bg-zinc-100 text-center">
       <span className="text-sm text-zinc-500">
         {new Date().getFullYear()} QuickShop. Desenvolvido por{' '}
         <a

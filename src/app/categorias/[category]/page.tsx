@@ -15,7 +15,7 @@ export default function CategoryDetailPage() {
   const products = ecommerce.products.filter((p) => p.categoryId === category.id)
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-y-6 min-h-[var(--home-height)] py-8">
       <ReturnLink path="/categorias" text="Ver todas as categorias" />
 
       <h1 className="text-2xl font-bold text-zinc-800">{category.name}</h1>

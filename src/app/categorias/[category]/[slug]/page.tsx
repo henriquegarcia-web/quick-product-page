@@ -35,14 +35,14 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-[calc(100vh-var(--header-height))] py-8">
       <Breadcrumb
         category={{ name: category?.name || '', slug: category?.slug || '' }}
         product={{ name: product.name, slug: product.slug }}
       />
 
       <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-start">
-        <div className="w-full md:w-[35vw] max-w-[540px]">
+        <div className="w-full md:w-[35vw] md:max-w-[540px]">
           <ImageGallery images={currentVariant.images} />
         </div>
 
@@ -77,6 +77,6 @@ export default function ProductDetailPage() {
           <DeliveryChecker />
         </div>
       </div>
-    </>
+    </div>
   )
 }

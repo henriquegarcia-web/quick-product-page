@@ -27,7 +27,7 @@ export default function Breadcrumb({ category, product }: Props) {
 
       <LuChevronRight className="mx-2 h-4 w-4" aria-hidden />
 
-      <span className="text-zinc-900 font-medium" aria-current="page">
+      <span className="text-zinc-900 font-medium line-clamp-1" aria-current="page">
         {product.name}
       </span>
     </nav>
