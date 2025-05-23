@@ -2,6 +2,8 @@
 
 Este projeto foi desenvolvido como parte do processo seletivo para a vaga de Desenvolvedor Frontend na Montink. A aplicação simula uma página de produto de e-commerce, construída com foco em arquitetura escalável, experiência do usuário e manutenção inteligente de estado.
 
+🔗 **Veja em produção:** [Clique aqui (Ctrl + Click)](https://quick-product-page.vercel.app/)
+
 ---
 
 ## 🚀 Tecnologias Utilizadas
@@ -80,7 +82,7 @@ npm run dev | yarn dev
 
 O projeto está publicado e pode ser acessado publicamente através dos links abaixo:
 
-- 🔗 **Projeto na Vercel:** [Clique aqui (Ctrl + Click)](https://desafio-montink.vercel.app)
+- 🔗 **Projeto na Vercel:** [Clique aqui (Ctrl + Click)](https://quick-product-page.vercel.app/)
 - 📁 **Repositório no GitHub:** [Clique aqui (Ctrl + Click)](https://github.com/henriquegarcia-web/quick-product-page)
 
 ---
