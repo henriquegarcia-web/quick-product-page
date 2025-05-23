@@ -51,7 +51,7 @@ export default function DeliveryChecker() {
           placeholder="Digite seu CEP"
           error={error}
         />
-        <Button onClick={handleFetch} loading={loading} className="h-[var(--input-height)]">
+        <Button onClick={handleFetch} loading={loading}>
           OK
         </Button>
       </div>

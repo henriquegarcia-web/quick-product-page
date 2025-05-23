@@ -14,14 +14,14 @@ interface Props {
 
 export default function Breadcrumb({ category, product }: Props) {
   return (
-    <nav className="text-sm text-zinc-600 flex items-center" aria-label="breadcrumb">
+    <nav className="flex items-center w-fit text-sm text-zinc-600" aria-label="breadcrumb">
       <Link href="/" className="hover:underline">
         Home
       </Link>
 
       <LuChevronRight className="mx-2 h-4 w-4" aria-hidden />
 
-      <Link href={`/produtos/${category.slug}`} className="hover:underline">
+      <Link href={`/categorias/${category.slug}`} className="hover:underline">
         {category.name}
       </Link>
 
