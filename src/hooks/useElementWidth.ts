@@ -1,7 +1,16 @@
 'use client'
 
+// ─── Imports ────────────────────────────────────────────────────────────────
+
 import { useEffect, useState, RefObject } from 'react'
 
+// ─── Hook useElementWidth ───────────────────────────────────────────────────
+
+/**
+ * Retorna dinamicamente a largura do primeiro filho <div> dentro de um elemento referenciado.
+ * Observa mudanças de tamanho usando ResizeObserver.
+ * Utilizado para ajustar o tamanho de elementos responsivos.
+ */
 export function useElementWidth<T extends HTMLElement>(ref: RefObject<T | null>) {
   const [width, setWidth] = useState(0)
 

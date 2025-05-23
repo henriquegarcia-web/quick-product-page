@@ -1,5 +1,7 @@
 'use client'
 
+// ─── Imports ────────────────────────────────────────────────────────────────
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef, useEffect } from 'react'
@@ -7,14 +9,18 @@ import { useState, useRef, useEffect } from 'react'
 import { useElementWidth } from '@/hooks/useElementWidth'
 import { Button } from '@/components/forms'
 
-import type { IProduct } from '@/types/ecommerce'
+import type { IProduct } from '@/types/product'
 
-interface ProductCardProps {
+// ─── Tipagens ───────────────────────────────────────────────────────────────
+
+interface IProductCardProps {
   product: IProduct
   categorySlug: string
 }
 
-export default function ProductCard({ product, categorySlug }: ProductCardProps) {
+// ─── Componente ProductCard ─────────────────────────────────────────────────
+
+export default function ProductCard({ product, categorySlug }: IProductCardProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [hovered, setHovered] = useState(false)
 
@@ -22,9 +28,9 @@ export default function ProductCard({ product, categorySlug }: ProductCardProps)
   const sliderRef = useRef<HTMLDivElement>(null)
 
   const imageWidth = useElementWidth(sliderRef)
-
   const productImages = product.variants[0].images
 
+  // Animação automática no hover
   useEffect(() => {
     if (hovered) {
       intervalRef.current = setInterval(() => {
@@ -36,15 +42,16 @@ export default function ProductCard({ product, categorySlug }: ProductCardProps)
     }
 
     return () => clearInterval(intervalRef.current!)
-  }, [hovered, productImages.length])
+  }, [hovered, productImages])
 
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="flex flex-col gap-4 p-4 border border-zinc-200 rounded-lg hover:shadow-md transition"
+      aria-label={`Produto: ${product.name}`}
     >
-      {/* Carrossel */}
+      {/* Carrossel de Imagens */}
       <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-zinc-100">
         <div
           ref={sliderRef}
@@ -58,7 +65,7 @@ export default function ProductCard({ product, categorySlug }: ProductCardProps)
             <div key={i} className="relative w-full aspect-square">
               <Image
                 src={img}
-                alt={`${product.name}-${i}`}
+                alt={`${product.name} - Imagem ${i + 1}`}
                 width={280}
                 height={280}
                 className="object-cover w-full h-full"
@@ -68,16 +75,16 @@ export default function ProductCard({ product, categorySlug }: ProductCardProps)
         </div>
       </div>
 
-      {/* Content */}
+      {/* Conteúdo do Produto */}
       <div className="flex flex-col gap-1">
         <h2 className="text-lg font-semibold text-zinc-900 leading-snug">{product.name}</h2>
         <p className="text-sm text-zinc-600 line-clamp-2">{product.description}</p>
       </div>
 
-      {/* Price - Adicionar futuramente */}
+      {/* Preço (Exibir preço futuramente) */}
 
-      {/* CTA */}
-      <Button className="w-full mt-2">
+      {/* Botão de Ação */}
+      <Button className="w-full mt-2" aria-label={`Ver detalhes de ${product.name}`}>
         <Link href={`/categorias/${categorySlug}/${product.slug}`}>Ver produto</Link>
       </Button>
     </div>

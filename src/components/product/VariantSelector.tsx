@@ -1,8 +1,12 @@
 'use client'
 
+// ─── Imports ────────────────────────────────────────────────────────────────
+
 import { VariantButton } from '@/components/product'
 
-interface Props {
+// ─── Tipagens ───────────────────────────────────────────────────────────────
+
+interface VariantSelectorProps {
   colors: string[]
   sizes: string[]
   selectedColor: string
@@ -12,6 +16,8 @@ interface Props {
   availableSizes: string[]
 }
 
+// ─── Componente VariantSelector ─────────────────────────────────────────────
+
 export default function VariantSelector({
   colors,
   sizes,
@@ -20,11 +26,11 @@ export default function VariantSelector({
   onSelectColor,
   onSelectSize,
   availableSizes,
-}: Props) {
+}: VariantSelectorProps) {
   return (
     <div className="space-y-4">
-      {/* Cor */}
-      <div>
+      {/* Seleção de cor */}
+      <div aria-label="Seleção de cor">
         <h3 className="text-sm font-semibold text-zinc-800 mb-2">Cor</h3>
         <div className="flex flex-wrap gap-2">
           {colors.map((color) => (
@@ -38,8 +44,8 @@ export default function VariantSelector({
         </div>
       </div>
 
-      {/* Tamanho */}
-      <div>
+      {/* Seleção de tamanho */}
+      <div aria-label="Seleção de tamanho">
         <h3 className="text-sm font-semibold text-zinc-800 mb-2">Tamanho</h3>
         <div className="flex flex-wrap gap-2">
           {sizes.map((size) => (

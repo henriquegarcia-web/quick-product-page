@@ -1,3 +1,5 @@
+// ─── Componente Logo ────────────────────────────────────────────────────────
+
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -5,7 +7,7 @@ import { ecommerce } from '@/data/ecommerce'
 
 export default function Logo() {
   return (
-    <Link href="/">
+    <Link href="/" aria-label="Ir para a página inicial">
       <Image
         src={ecommerce.store.logo}
         alt="Logo da QuickShop"

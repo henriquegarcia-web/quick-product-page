@@ -1,6 +1,10 @@
 'use client'
 
+// ─── Imports ────────────────────────────────────────────────────────────────
+
 import { cn } from '@/utils/cn'
+
+// ─── Tipagens ───────────────────────────────────────────────────────────────
 
 interface VariantButtonProps {
   label: string
@@ -8,6 +12,8 @@ interface VariantButtonProps {
   onClick: () => void
   disabled?: boolean
 }
+
+// ─── Componente VariantButton ──────────────────────────────────────────────
 
 export default function VariantButton({
   label,
@@ -19,6 +25,8 @@ export default function VariantButton({
     <button
       onClick={onClick}
       disabled={disabled}
+      aria-pressed={selected}
+      aria-disabled={disabled}
       className={cn(
         'flex items-center h-[var(--input-height)] gap-y-2 px-4 rounded-md border text-sm transition',
         disabled

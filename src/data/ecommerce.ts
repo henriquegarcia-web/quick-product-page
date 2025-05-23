@@ -1,13 +1,16 @@
 /**
  * Observações:
- * - Optei por criar as lógicas de onSale, withoutStock, valores com desconto e parcelamento,
- *   diretamente no componente de preço, embora em um caso real, essas lógicas poderiam ser
- *   retornadas já calculadas pelo backend.
+ * - Optei por criar as lógicas de onSale, withoutStock, valores com desconto e parcelamento
+ *   diretamente no componente de preço. Em um caso real, essas lógicas poderiam ser retornadas
+ *   já calculadas pelo backend para otimização de performance e manutenção.
  */
+
+// ─── Mock de Dados da Loja ──────────────────────────────────────────────────
 
 import type { IEcommerceData } from '@/types/ecommerce'
 
 export const ecommerce: IEcommerceData = {
+  // ─── Detalhes da Loja ─────────────────────────────────────────────────────
   store: {
     name: 'QuickShop',
     logo: '/logo_full.png',
@@ -21,6 +24,7 @@ export const ecommerce: IEcommerceData = {
     },
   },
 
+  // ─── Categorias ───────────────────────────────────────────────────────────
   categories: [
     {
       id: 'camisetas',
@@ -29,6 +33,7 @@ export const ecommerce: IEcommerceData = {
     },
   ],
 
+  // ─── Produtos ─────────────────────────────────────────────────────────────
   products: [
     {
       id: 'camiseta-esportiva',

@@ -1,3 +1,5 @@
+// ─── Tipagens ───────────────────────────────────────────────────────────────
+
 export type SupportedMask = 'currency' | 'cep'
 
 type MaskInput = {
@@ -14,7 +16,10 @@ type MaskHandlers = {
   [K in SupportedMask]: (_value: MaskInput[K]) => MaskReturn[K]
 }
 
+// ─── Handlers de Máscara ────────────────────────────────────────────────────
+
 const maskHandlers: MaskHandlers = {
+  // Formata valor em real: R$ 0,00
   currency: (value) => {
     if (value === null || value === undefined) return 'R$ 0,00'
 
@@ -31,6 +36,7 @@ const maskHandlers: MaskHandlers = {
     }).format(numericValue)
   },
 
+  // Formata string como CEP: 00000-000
   cep: (value) => {
     if (!value) return ''
     return value
@@ -39,6 +45,8 @@ const maskHandlers: MaskHandlers = {
       .replace(/(-\d{3})\d+?$/, '$1')
   },
 }
+
+// ─── Função Principal ───────────────────────────────────────────────────────
 
 export function applyMask<K extends SupportedMask>(
   value: MaskInput[K],

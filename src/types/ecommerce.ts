@@ -1,3 +1,9 @@
+// ─── Imports ────────────────────────────────────────────────────────────────
+
+import { IProduct } from '@/types/product'
+
+// ─── Store ──────────────────────────────────────────────────────────────────
+
 export interface IStoreInfo {
   name: string
   logo: string
@@ -11,37 +17,15 @@ export interface IStoreInfo {
   }
 }
 
+// ─── Categorias ─────────────────────────────────────────────────────────────
+
 export interface ICategory {
   id: string
   name: string
   slug: string
 }
 
-export interface IProductPrice {
-  current: number
-  original?: number
-}
-
-export interface IProductSize {
-  size: string
-  stock: number
-  price: IProductPrice
-}
-
-export interface IProductVariant {
-  color: string
-  images: string[]
-  sizes: IProductSize[]
-}
-
-export interface IProduct {
-  id: string
-  categoryId: string
-  name: string
-  slug: string
-  description: string
-  variants: IProductVariant[]
-}
+// ─── Estrutura de Dados da Loja ─────────────────────────────────────────────
 
 export interface IEcommerceData {
   store: IStoreInfo
