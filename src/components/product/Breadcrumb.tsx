@@ -1,22 +1,24 @@
 'use client'
 
-// ─── Componente Breadcrumb ─────────────────────────────────────────────────
+// ─── Imports ────────────────────────────────────────────────────────────────
 
-import { useProductSelection } from '@/hooks/useProductSelection'
-import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import Link from 'next/link'
 import { LuChevronRight } from 'react-icons/lu'
 
-// ─── Componente Breadcrumb ──────────────────────────────────────────────────
+import { useProductSelection } from '@/hooks/useProductSelection'
+
+// ─── Componente Breadcrumb ─────────────────────────────────────────────────
 
 export default function Breadcrumb() {
   const params = useParams<{ slug: string }>()
-  const { product, category } = useProductSelection(params.slug)
+  const { product, category, loading } = useProductSelection(params.slug)
 
-  if (!product) return null
+  if (loading) {
+    return <div className="h-6 w-60 bg-zinc-100 animate-pulse rounded-md" />
+  }
 
-  const curCategory = { name: category?.name || '', slug: category?.slug || '' }
-  const curProduct = { name: product.name, slug: product.slug }
+  if (!product || !category) return null
 
   return (
     <nav
@@ -32,8 +34,8 @@ export default function Breadcrumb() {
       <LuChevronRight className="mx-2 h-4 w-4" aria-hidden />
 
       {/* Link: Categoria */}
-      <Link href={`/categorias/${curCategory.slug}`} className="hover:underline">
-        {curCategory.name}
+      <Link href={`/categorias/${category.slug}`} className="hover:underline">
+        {category.name}
       </Link>
 
       {/* Separador */}
@@ -41,7 +43,7 @@ export default function Breadcrumb() {
 
       {/* Página atual */}
       <span className="text-zinc-900 font-medium line-clamp-1" aria-current="page">
-        {curProduct.name}
+        {product.name}
       </span>
     </nav>
   )

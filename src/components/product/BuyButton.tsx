@@ -13,8 +13,9 @@
 
 import { useState } from 'react'
 import { useParams } from 'next/navigation'
-import { useProductSelection } from '@/hooks/useProductSelection'
 import { ImSpinner9 } from 'react-icons/im'
+
+import { useProductSelection } from '@/hooks/useProductSelection'
 import { cn } from '@/utils/cn'
 
 // ─── Tipagens ───────────────────────────────────────────────────────────────
@@ -27,9 +28,12 @@ interface BuyButtonProps {
 
 export default function BuyButton({ mode }: BuyButtonProps) {
   const params = useParams<{ slug: string }>()
-  const { selectedColor, selectedSize, product } = useProductSelection(params.slug)
-
+  const { selectedColor, selectedSize, product, loading } = useProductSelection(params.slug)
   const [internalLoading, setInternalLoading] = useState(false)
+
+  if (loading) {
+    return <div className="h-[var(--input-height)] bg-zinc-100 animate-pulse rounded-lg" />
+  }
 
   const isDisabled = !selectedColor || !selectedSize || internalLoading
 

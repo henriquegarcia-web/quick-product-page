@@ -3,6 +3,7 @@
 // ─── Imports ────────────────────────────────────────────────────────────────
 
 import { useParams } from 'next/navigation'
+
 import { useProductSelection } from '@/hooks/useProductSelection'
 import { VariantButton } from '@/components/product'
 
@@ -18,7 +19,12 @@ export default function VariantSelector() {
     setSelectedColor,
     setSelectedSize,
     availableSizes,
+    loading,
   } = useProductSelection(params.slug)
+
+  if (loading) {
+    return <div className="h-28 bg-zinc-100 animate-pulse rounded-lg" />
+  }
 
   return (
     <div className="space-y-4">
