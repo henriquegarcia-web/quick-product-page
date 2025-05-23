@@ -11,6 +11,7 @@ Este projeto foi desenvolvido como parte do processo seletivo para a vaga de Des
 - **TypeScript**
 - **Tailwind CSS**
 - **ViaCEP API**
+- **Husky + Esllint & Prettier**
 
 ---
 
